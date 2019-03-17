@@ -29,6 +29,7 @@ public class Test02 {
         //定义一个map来存放每个元素出现的次数
         Map<Long,Integer> elementsCount=new HashMap<Long,Integer>();
         //有编号查询
+        //测试
         /*
          * 循环判断
          */
