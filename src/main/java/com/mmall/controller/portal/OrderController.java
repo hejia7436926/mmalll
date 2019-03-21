@@ -9,6 +9,7 @@ import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IOrderService;
+import com.mmall.vo.OrderVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,16 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
         }
         return orderService.getOrderCartProduct(user.getId());
+    }
+
+    @RequestMapping("detail.do")
+    @ResponseBody
+    public ServerResponse detail(HttpSession session,Long orderNo){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user ==null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return orderService.getOrderDetail(user.getId(),orderNo);
     }
 
 
