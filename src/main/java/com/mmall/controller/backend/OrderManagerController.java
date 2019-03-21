@@ -79,4 +79,19 @@ public class OrderManagerController {
             return ServerResponse.createByErrorMessage("无权限操作");
         }
     }
+    /*发货*/
+    @RequestMapping("send_goods.do")
+    @ResponseBody
+    public ServerResponse<String> orderSendGoods(HttpSession session, Long orderNo){
+
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user == null){
+            ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录管理员");
+        }
+        if(userService.checkAdminRole(user).isSuccess()){
+            return orderService.orderSendGoods(orderNo);
+        }else{
+            return ServerResponse.createByErrorMessage("无权限操作");
+        }
+    }
 }

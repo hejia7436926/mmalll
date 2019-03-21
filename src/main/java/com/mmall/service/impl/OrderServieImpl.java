@@ -40,10 +40,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @version : 1.0
@@ -395,6 +392,20 @@ public class OrderServieImpl implements IOrderService {
         PageInfo pageInfo = new PageInfo(Lists.newArrayList(order));
         pageInfo.setList(Lists.newArrayList(orderVo));
         return ServerResponse.createBySuccess(pageInfo);
+    }
+
+    @Override
+    public ServerResponse<String> orderSendGoods(Long orderNo) {
+        Order order = orderMapper.selectByOrderNo(orderNo);
+        if(order != null){
+            if(order.getStatus() == Const.OrderStatusEnum.PAID.getCode()){
+                order.setSendTime(new Date());
+                order.setStatus(Const.OrderStatusEnum.SHIPPED.getCode());
+                orderMapper.updateByPrimaryKeySelective(order);
+                return ServerResponse.createBySuccessMessage("发货成功");
+            }
+        }
+        return ServerResponse.createByErrorMessage("订单不存在");
     }
 
     private List<OrderVo> assembleOrderVoList(List<Order> orderList, Integer userId){
