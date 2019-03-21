@@ -35,4 +35,7 @@ public interface IOrderService {
 
     /*订单详情*/
     ServerResponse<OrderVo> manageDetail(Long orderNo);
+
+    /*搜索*/
+    ServerResponse<PageInfo> orderSearch(Long orderNo,int pageNum,int pageSize);
 }
