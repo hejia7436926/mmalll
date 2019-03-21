@@ -181,4 +181,12 @@
       )
     </foreach>
   </insert>
+
+  <!--订单编号查询-->
+  <select id="getByOrderNo" parameterType="Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_order_item
+    where order_no = #{orderNo}
+  </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.mmall.service;
 
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.vo.OrderVo;
 
@@ -25,4 +26,7 @@ public interface IOrderService {
 
     /*获取订单详情*/
     ServerResponse<OrderVo> getOrderDetail(Integer userId, Long orderNo);
+
+    /**获取订单列表*/
+    ServerResponse<PageInfo> getOrderList(Integer userId,int pageNum,int pageSize);
 }

@@ -207,4 +207,12 @@
     select <include refid="Base_Column_List"/>
     from mmall_order where order_no = #{orderNo}
   </select>
+
+  <!--用户编号查询订单-->
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from mmall_order
+    where user_id = #{userId}
+    order by create_time desc
+  </select>
 </mapper>
