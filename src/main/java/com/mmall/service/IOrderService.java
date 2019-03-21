@@ -18,4 +18,7 @@ public interface IOrderService {
 
     /**取消订单*/
     ServerResponse<String> cancel(Integer userId,Long orderNo);
+
+    /**查询订单的商品信息*/
+    ServerResponse getOrderCartProduct(Integer userId);
 }
