@@ -361,7 +361,17 @@ public class OrderServieImpl implements IOrderService {
         return ServerResponse.createBySuccess(pageResult);
     }
 
-    private List<OrderVo> assembleOrderVoList(List<Order> orderList,Integer userId){
+    @Override
+    public ServerResponse<PageInfo> manageList(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Order>orderList = orderMapper.selectAllOrder();
+        List<OrderVo>orderVoList = this.assembleOrderVoList(orderList,null);
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setList(orderVoList);
+        return ServerResponse.createBySuccess(pageInfo);
+    }
+
+    private List<OrderVo> assembleOrderVoList(List<Order> orderList, Integer userId){
         List<OrderVo> orderVoList = Lists.newArrayList();
         for(Order order : orderList){
             List<OrderItem> orderItemList = Lists.newArrayList();

@@ -26,4 +26,8 @@ public interface OrderMapper {
 
     /**用户编号获取订单*/
     List<Order> selectByUserId(Integer userId);
+
+    //backend
+    /*获取所有的订单*/
+    List<Order> selectAllOrder();
 }

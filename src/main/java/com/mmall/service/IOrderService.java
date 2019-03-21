@@ -29,4 +29,7 @@ public interface IOrderService {
 
     /**获取订单列表*/
     ServerResponse<PageInfo> getOrderList(Integer userId,int pageNum,int pageSize);
+
+    //backend
+    ServerResponse<PageInfo> manageList(int pageNum,int pageSize);
 }
