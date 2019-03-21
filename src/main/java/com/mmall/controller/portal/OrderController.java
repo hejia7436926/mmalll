@@ -49,8 +49,16 @@ public class OrderController {
         return orderService.create(user.getId(),shippingId);
     }
 
-    //测试
-    //试试
+    /*取消订单*/
+    @RequestMapping("cancel.do")
+    @ResponseBody
+    public ServerResponse cancel(HttpSession session,Long orderNo){//收货地址编号
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user ==null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return orderService.cancel(user.getId(),orderNo);
+    }
 
 
 

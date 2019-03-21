@@ -15,4 +15,7 @@ public interface IOrderService {
 
     /**创建订单*/
     ServerResponse create(Integer userId,Integer shippingId);
+
+    /**取消订单*/
+    ServerResponse<String> cancel(Integer userId,Long orderNo);
 }
