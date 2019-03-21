@@ -32,4 +32,7 @@ public interface IOrderService {
 
     //backend
     ServerResponse<PageInfo> manageList(int pageNum,int pageSize);
+
+    /*订单详情*/
+    ServerResponse<OrderVo> manageDetail(Long orderNo);
 }
